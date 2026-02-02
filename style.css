@@ -33,9 +33,7 @@ body {
   z-index: 1;
   object-fit: cover;
 
-  /* hidden by default */
-  clip-path: circle(0px at var(--x, 50%) var(--y, 50%));
-  transition: clip-path 0.08s linear;
+  /* DO NOT put clip-path here */
 }
 
 #particles-js {
