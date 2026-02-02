@@ -21,8 +21,19 @@ body {
   width: 100%;
   height: 100%;
   z-index: 2;
-  object-fit: cover;
-  pointer-events: none; /* VERY IMPORTANT */
+  pointer-events: none;
+
+  /* NEW */
+  mask-image: radial-gradient(
+    circle 120px at var(--x, 50%) var(--y, 50%),
+    transparent 98%,
+    black 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle 120px at var(--x, 50%) var(--y, 50%),
+    transparent 98%,
+    black 100%
+  );
 }
 
 .final-image {
