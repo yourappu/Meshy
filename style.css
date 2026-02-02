@@ -14,6 +14,7 @@ body {
   aspect-ratio: 1 / 1;
   cursor: none;
 }
+
 .base-image {
   position: absolute;
   inset: 0;
@@ -21,7 +22,7 @@ body {
   height: 100%;
   z-index: 2;
   object-fit: cover;
-  pointer-events: none; /* ⭐ THIS IS THE KEY */
+  pointer-events: none; /* VERY IMPORTANT */
 }
 
 .final-image {
@@ -32,8 +33,9 @@ body {
   z-index: 1;
   object-fit: cover;
 
+  /* hidden by default */
   clip-path: circle(0px at 50% 50%);
-  transition: clip-path 0.1s ease;
+  transition: clip-path 0.08s linear;
 }
 
 #particles-js {
