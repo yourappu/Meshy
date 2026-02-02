@@ -1,76 +1,30 @@
 const container = document.querySelector(".container");
 const finalImage = document.querySelector(".final-image");
 
-container.addEventListener("mousemove", (event) => {
-  window.requestAnimationFrame(() => {
-    const rect = container.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    finalImage.style.setProperty("--x", `${x}px`);
-    finalImage.style.setProperty("--y", `${y}px`);
-  });
+function showAt(x, y) {
+  finalImage.style.setProperty("--x", `${x}px`);
+  finalImage.style.setProperty("--y", `${y}px`);
+  finalImage.style.clipPath = `circle(120px at ${x}px ${y}px)`;
+}
+
+function hide() {
+  finalImage.style.clipPath = "circle(0px at 50% 50%)";
+}
+
+/* Desktop */
+container.addEventListener("mousemove", (e) => {
+  const rect = container.getBoundingClientRect();
+  showAt(e.clientX - rect.left, e.clientY - rect.top);
 });
 
-particlesJS("particles-js", {
-  particles: {
-    number: {
-      value: 52,
-      density: {
-        enable: true,
-        value_area: 600
-      }
-    },
-    color: {
-      value: "#fff"
-    },
-    shape: {
-      type: "circle",
-      stroke: {
-        width: 0,
-        color: "#000000"
-      }
-    },
-    opacity: {
-      value: 0.6,
-      random: true,
-      anim: {
-        enable: false
-      }
-    },
-    size: {
-      value: 5,
-      random: true,
-      anim: {
-        enable: false
-      }
-    },
-    line_linked: {
-      enable: false
-    },
-    move: {
-      enable: true,
-      speed: 2,
-      direction: "bottom",
-      random: false,
-      straight: false,
-      out_mode: "out",
-      bounce: false,
-      attract: {
-        enable: false
-      }
-    }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: false
-      },
-      onclick: {
-        enable: true
-      },
-      resize: true
-    }
-  },
-  retina_detect: true
-});
+container.addEventListener("mouseleave", hide);
+
+/* Mobile */
+container.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  const rect = container.getBoundingClientRect();
+  const t = e.touches[0];
+  showAt(t.clientX - rect.left, t.clientY - rect.top);
+}, { passive: false });
+
+container.addEventListener("touchend", hide);
